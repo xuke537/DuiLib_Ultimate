@@ -503,7 +503,7 @@ namespace DuiLib {
 						hz = OpenZip((void*)sFile.GetData(), pwd);
 						if(pwd) delete[] pwd;
 #else
-						hz = OpenZip((void*)sFile.GetData(), sFilePwd.GetData());
+						hz = OpenZip((const TCHAR*)sFile.GetData(), sFilePwd.GetData());
 #endif
 					}
 					if( hz == NULL ) break;
@@ -515,7 +515,7 @@ namespace DuiLib {
 					dwSize = ze.unc_size;
 					if( dwSize == 0 ) break;
 					pData = new BYTE[ dwSize ];
-					int res = UnzipItem(hz, i, pData, dwSize, 3);
+					int res = UnzipItem(hz, i, pData, dwSize);
 					if( res != 0x00000000 && res != 0x00000600)
 					{
 						delete[] pData;
